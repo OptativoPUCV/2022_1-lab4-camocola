@@ -96,9 +96,18 @@ HashMap * createMap(long capacity) {
     return crearmapa;
 }
 
-void eraseMap(HashMap * map,  char * key) {    
-
-
+//elimina el dato correspondiente a la clave key
+void eraseMap(HashMap * map,  char * key) {
+    //Para hacerlo debe buscar el dato y luego *marcarlo* para que no sea válido.
+    Pair* datoEncontrado = searchMap(map, key);
+    if (datoEncontrado == NULL)
+    {
+        return;
+    }
+    //**No elimine el par**, sólo invalídelo asignando NULL a la clave (pair->key=NULL).
+    datoEncontrado->key = NULL;
+    //Recuerde actualizar la variable size.
+    map->size--;
 }
 
 //la cual retorna el **Pair** asociado a la clave ingresada. 
