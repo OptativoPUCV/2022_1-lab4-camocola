@@ -40,8 +40,44 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
-
-
+    //No inserte claves repetidas
+    for (int i=0; i <= map->capacity-1; i++) 
+    {
+        //verifica que no esté guardada esta clave
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL && strcmp(map->buckets[i]->key, key) == 0)
+        {
+            //el key ya se encuentra en el mapa
+            return;
+        } 
+    }
+    Pair* nuevoDato = createPair(key, value);
+    //Aplicar la función hash a la clave para obtener la posición donde debería insertar el nuevo par
+    long indice = hash (key, map->capacity);
+    //Una casilla disponible es una casilla nula, pero también una que tenga un par inválido (key==NULL).
+    if (map->buckets[indice] == NULL || map->buckets[indice]->key == NULL)
+    {
+        //casilla disponible
+        map->buckets[indice] = nuevoDato; //pair pointer
+    }
+    else
+    {
+        //la casilla se encuentra ocupada, avance hasta una casilla disponible (*método de resolución de colisiones*).
+        while (map->buckets[indice] != NULL && map->buckets[indice]->key != NULL)
+        {
+            indice++;
+            //Recuerde que el arreglo es **circular**.
+            if(indice >= map->capacity)
+            {
+                indice = 0;
+            }
+        }
+        //casilla disponible
+        map->buckets[indice] = nuevoDato; //pair pointer
+    }
+    //Recuerde actualizar la variable size.
+    map->size++;
+    //actualiza el índice current a esa posición.
+    map->current = indice;
 }
 
 void enlarge(HashMap * map) {
@@ -66,6 +102,12 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
+    //la cual retorna el **Pair** asociado a la clave ingresada. 
+    //Usar la función hash para obtener la posición donde puede encontrarse el par con la clave
+    //Si la clave no se encuentra avance hasta encontrarla (*método de resolución de colisiones*)
+    // Si llega a una casilla nula, retorne NULL inmediatamente (no siga avanzando, la clave no está)
+    //Recuerde actualizar el índice current a la posición encontrada.
+    //Recuerde que el arreglo es **circular**.
 
 
     return NULL;

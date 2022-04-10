@@ -70,3 +70,9 @@ Sun, Apr 10, 2022 12:01:58 AM:
  tests:  1|5
 total_score: 10/70
 62efb29
+Sun, Apr 10, 2022  1:46:17 PM: 
+ hashmap.c | 46 ++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 44 insertions(+), 2 deletions(-)
+ tests:  5|4
+total_score: 30/70
+690e6fc
