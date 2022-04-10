@@ -2,3 +2,9 @@ Sat, Apr  9, 2022 11:00:43 PM:
  tests:  0|6
 total_score: 0/70
 4daf612
+Sat, Apr  9, 2022 11:03:42 PM: 
+ hashmap.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+ tests:  0|6
+total_score: 0/70
+34c0019
