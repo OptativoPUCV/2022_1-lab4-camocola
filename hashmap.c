@@ -142,12 +142,32 @@ Pair * searchMap(HashMap * map,  char * key) {
     return NULL;
 }
 
+// retorna el primer **Pair** válido del arreglo buckets
 Pair * firstMap(HashMap * map) {
-
+    for (int i = 0; i < map->capacity; i++)
+    {
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL)
+        {
+            //encontramos el primer pair válido
+            //Recuerde actualizar el current
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
     return NULL;
 }
 
+//retorna el siguiente **Pair** del arreglo buckets a partir índice current
 Pair * nextMap(HashMap * map) {
-
+    for (int i = map->current; i < map->capacity; i++)
+    {
+        if (map->buckets[i] != NULL && map->buckets[i]->key != NULL)
+        {
+            //encontramos el next
+            //Recuerde actualizar el current
+            map->current = i;
+            return map->buckets[i];
+        }
+    }
     return NULL;
 }
