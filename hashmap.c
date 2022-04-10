@@ -159,7 +159,7 @@ Pair * firstMap(HashMap * map) {
 
 //retorna el siguiente **Pair** del arreglo buckets a partir índice current
 Pair * nextMap(HashMap * map) {
-    for (int i = map->current; i < map->capacity; i++)
+    for (int i = map->current+1; i < map->capacity; i++)
     {
         if (map->buckets[i] != NULL && map->buckets[i]->key != NULL)
         {
